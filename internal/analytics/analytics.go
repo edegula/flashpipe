@@ -4,16 +4,17 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 	"fmt"
+	"net/url"
+	"os"
+	"strings"
+	"time"
+
 	"github.com/elliotchance/orderedmap/v2"
 	"github.com/engswee/flashpipe/internal/config"
 	"github.com/engswee/flashpipe/internal/httpclnt"
 	"github.com/engswee/flashpipe/internal/logger"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
-	"net/url"
-	"os"
-	"strings"
-	"time"
 )
 
 var Host string
@@ -37,7 +38,7 @@ func collectDataAndSend(cmd *cobra.Command, cmdErr error, startTime time.Time, a
 	urlPath := fmt.Sprintf("/matomo.php?%s", MapToString(params))
 	// TODO - increase timeout ?
 	exe := httpclnt.New("", "", "", "", "", "", analyticsHost, analyticsHostScheme, analyticsHostPort, showLogs)
-	_, err := exe.ExecGetRequest(urlPath, nil)
+	//_, err := exe.ExecGetRequest(urlPath, nil)
 	if err != nil && showLogs {
 		log.Error().Msgf("Analytics logging error: %s", err.Error())
 	}
