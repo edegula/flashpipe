@@ -27,7 +27,7 @@ func Log(cmd *cobra.Command, err error, startTime time.Time) {
 			log.Debug().Msg("Logging to Matomo Analytics")
 		}
 
-		collectDataAndSend(cmd, err, startTime, Host, "https", 443, SiteId, ShowLogs == "true")
+		//	collectDataAndSend(cmd, err, startTime, Host, "https", 443, SiteId, ShowLogs == "true")
 	}
 }
 
