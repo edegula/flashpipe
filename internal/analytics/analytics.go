@@ -4,16 +4,17 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 	"fmt"
+	"net/url"
+	"os"
+	"strings"
+	"time"
+
 	"github.com/elliotchance/orderedmap/v2"
 	"github.com/engswee/flashpipe/internal/config"
 	"github.com/engswee/flashpipe/internal/httpclnt"
 	"github.com/engswee/flashpipe/internal/logger"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
-	"net/url"
-	"os"
-	"strings"
-	"time"
 )
 
 var Host string
@@ -26,7 +27,7 @@ func Log(cmd *cobra.Command, err error, startTime time.Time) {
 			log.Debug().Msg("Logging to Matomo Analytics")
 		}
 
-		collectDataAndSend(cmd, err, startTime, Host, "https", 443, SiteId, ShowLogs == "true")
+		//	collectDataAndSend(cmd, err, startTime, Host, "https", 443, SiteId, ShowLogs == "true")
 	}
 }
 
