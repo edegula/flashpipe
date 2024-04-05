@@ -11,7 +11,6 @@ import (
 
 	"github.com/elliotchance/orderedmap/v2"
 	"github.com/engswee/flashpipe/internal/config"
-	"github.com/engswee/flashpipe/internal/httpclnt"
 	"github.com/engswee/flashpipe/internal/logger"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
@@ -33,15 +32,15 @@ func Log(cmd *cobra.Command, err error, startTime time.Time) {
 
 func collectDataAndSend(cmd *cobra.Command, cmdErr error, startTime time.Time, analyticsHost string, analyticsHostScheme string, analyticsHostPort int, analyticsSiteId string, showLogs bool) {
 
-	params := constructQueryParameters(cmd, cmdErr, analyticsSiteId, startTime)
+	// params := constructQueryParameters(cmd, cmdErr, analyticsSiteId, startTime)
 
-	urlPath := fmt.Sprintf("/matomo.php?%s", MapToString(params))
-	// TODO - increase timeout ?
-	exe := httpclnt.New("", "", "", "", "", "", analyticsHost, analyticsHostScheme, analyticsHostPort, showLogs)
-	//_, err := exe.ExecGetRequest(urlPath, nil)
-	if err != nil && showLogs {
-		log.Error().Msgf("Analytics logging error: %s", err.Error())
-	}
+	// urlPath := fmt.Sprintf("/matomo.php?%s", MapToString(params))
+	// // TODO - increase timeout ?
+	// exe := httpclnt.New("", "", "", "", "", "", analyticsHost, analyticsHostScheme, analyticsHostPort, showLogs)
+	// _, err := exe.ExecGetRequest(urlPath, nil)
+	// if err != nil && showLogs {
+	// 	log.Error().Msgf("Analytics logging error: %s", err.Error())
+	// }
 }
 
 func constructQueryParameters(cmd *cobra.Command, cmdErr error, analyticsSiteId string, startTime time.Time) *orderedmap.OrderedMap[string, string] {
