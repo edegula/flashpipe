@@ -98,5 +98,5 @@ jobs:
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
     - run: |
-        docker build . -f ./build/Dockerfile -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/cpi-cicd:3.2.2
-        docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/cpi-cicd:3.2.2
+        docker build . -f ./build/Dockerfile -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/cpi-cicd:3.2.3
+        docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/cpi-cicd:3.2.3
