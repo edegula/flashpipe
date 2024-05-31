@@ -69,11 +69,12 @@ func TestCPICommands(t *testing.T) {
 	}
 
 	// Check integration was created
-	_, integrationExists, err := dt.Get("Integration_Test_IFlow", "active")
+	_, artifactDescription, integrationExists, err := dt.Get("Integration_Test_IFlow", "active")
 	if err != nil {
 		t.Fatalf("Get integration flow failed with error %v", err)
 	}
 	assert.True(t, integrationExists, "Integration flow was not created")
+	assert.Equal(t, "Integration Created", artifactDescription, "Artifact has incorrect description")
 
 	// 3 - Deploy integration flow
 	args = nil
@@ -143,11 +144,12 @@ func TestCPICommands(t *testing.T) {
 	}
 
 	// Check integration was updated
-	integrationVersion, _, err := dt.Get("Integration_Test_IFlow", "active")
+	integrationVersion, artifactDescription, _, err := dt.Get("Integration_Test_IFlow", "active")
 	if err != nil {
 		t.Fatalf("Get integration flow failed with error %v", err)
 	}
 	assert.Equal(t, "1.0.1", integrationVersion, "Integration flow was not updated to version 1.0.1")
+	assert.Equal(t, "Integration Updated", artifactDescription, "Artifact has incorrect description")
 
 	// 7 - Deploy integration flow
 	args = nil
@@ -184,6 +186,11 @@ func TestCPICommands(t *testing.T) {
 	}
 	assert.True(t, file.Exists("../../output/sync/artifact/Integration_Test_IFlow/META-INF/MANIFEST.MF"), "MANIFEST.MF does not exist")
 	assert.True(t, file.Exists("../../output/sync/artifact/Integration_Test_IFlow/src/main/resources/parameters.prop"), "parameters.prop does not exist")
+	packageDataFromTenant, err := api.GetPackageDetails("../../output/sync/artifact/FlashPipeIntegrationTest.json")
+	if err != nil {
+		t.Fatalf("Unable to read integration package file with error %v", err)
+	}
+	assert.Equal(t, "1.0.1", packageDataFromTenant.Root.Version, "Integration package was not updated to version 1.0.1")
 
 	// 9 - Snapshot to Git
 	args = nil
