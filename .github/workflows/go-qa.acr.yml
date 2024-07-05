@@ -40,8 +40,8 @@ jobs:
         go tool cover -html=c.out -o coverage.html
       env:
         FLASHPIPE_DEBUG: true
-        FLASHPIPE_TMN_HOST: c0513be6trial.it-cpitrial03.cfapps.ap21.hana.ondemand.com
-        FLASHPIPE_OAUTH_HOST: c0513be6trial.authentication.ap21.hana.ondemand.com
+        FLASHPIPE_TMN_HOST: d417c74ctrial.it-cpitrial03.cfapps.ap21.hana.ondemand.com
+        FLASHPIPE_OAUTH_HOST: d417c74ctrial.authentication.ap21.hana.ondemand.com
         FLASHPIPE_OAUTH_PATH: /oauth/token
         FLASHPIPE_OAUTH_CLIENTID: ${{ secrets.OAUTH_CLIENTID }}
         FLASHPIPE_OAUTH_CLIENTSECRET: ${{ secrets.OAUTH_CLIENTSECRET }}
