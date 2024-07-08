@@ -1,14 +1,15 @@
 package api
 
 import (
+	"os"
+	"testing"
+	"time"
+
 	"github.com/engswee/flashpipe/internal/httpclnt"
 	"github.com/engswee/flashpipe/internal/logger"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
-	"os"
-	"testing"
-	"time"
 )
 
 type RuntimeSuite struct {
@@ -95,7 +96,7 @@ func (suite *RuntimeSuite) TestRuntime_Get() {
 		suite.T().Fatalf("Get failed with error - %v", err)
 	}
 	if status == "STARTING" {
-		time.Sleep(15 * time.Second)
+		time.Sleep(45 * time.Second)
 		version, status, err = rt.Get("Integration_Test_IFlow")
 		if err != nil {
 			suite.T().Fatalf("Get failed with error - %v", err)
